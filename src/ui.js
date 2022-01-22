@@ -1255,7 +1255,7 @@
 					{
 						name   : 'About',
 						action : function () {
-							window.open ('/about.html');
+							window.open ('/about.html', '_self');
 						}
 					},
 
