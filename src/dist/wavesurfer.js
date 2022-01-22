@@ -1245,7 +1245,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
         function formatTime( time, format ) {
             var time_s = time >> 0;
-            var miliseconds = time - time_s;
+            var miliseconds = (1000*(time - time_s)) >> 0;
             
             if (time_s < 10)
                 time_s = '00:0' + time_s;
@@ -1260,7 +1260,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             }
 
             if (format === 1) {
-                return time_s + ':' + (miliseconds+'').substr(2, 2);
+                return time_s + '.' + ('000'+miliseconds).slice(-3);
                 // return time_s + ':' + (miliseconds.toFixed(2)+'').substr(2);
             }
 
@@ -1848,7 +1848,7 @@ var MultiCanvas = function (_Drawer) {
 
                         //var left = 0;
                         //var data = [];
-                        var x = 0;
+                        //var x = 0;
                         var pixel_distance = (width / total);
 
                         //ctx.font = "12px Arial lighter";
@@ -1859,22 +1859,23 @@ var MultiCanvas = function (_Drawer) {
                         ctx.fillStyle = '#aaa';
                         ctx.strokeStyle = '#aaa';
 
-                        // every 60 pixels put something
+                        // every 75 pixels put something
                         // console.log( pixel_distance );
 
-                        if (pixel_distance < 60) {
-                            pixel_distance = 60;
+                        if (pixel_distance < 75) {
+                            pixel_distance = 75;
                         }
-                        else if (pixel_distance > 160)
+                        else if (pixel_distance > 150)
                         {
-                            pixel_distance /= ((pixel_distance / 160) >> 0) + 1;
+                            pixel_distance /= ((pixel_distance / 150) >> 0) + 1;
                         }
 
 
                         var elements = width / pixel_distance;
                         var previous_time = 0;
 
-                        for (var i = 0; i < (total*10); ++i)
+						var x = pixel_distance*((left_offset/pixel_distance)<<0)
+                        for (var i = 0; i < (total*8); ++i)
                         {
                             if (x - left_offset > width - 2)
                             {
@@ -1908,9 +1909,9 @@ var MultiCanvas = function (_Drawer) {
 
                         ctx.beginPath();       // Start a new path
 
-                        x = 0;
+                        x = pixel_distance*((left_offset/pixel_distance)<<0);
 
-                        for (var i = 0; i < (total*10); ++i)
+                        for (var i = 0; i < (total*8); ++i)
                         {
                             if (x - left_offset > width - 2)
                             {
@@ -1926,7 +1927,7 @@ var MultiCanvas = function (_Drawer) {
                             x += pixel_distance;
                         }
 
-                        x = pixel_distance / 2;
+                        x = pixel_distance*(0.5+((left_offset/pixel_distance)<<0));
                         for (var i = 0; i < (total*10); ++i)
                         {
                             if (x - left_offset > width - 2)
