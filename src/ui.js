@@ -1255,7 +1255,7 @@
 					{
 						name   : 'About',
 						action : function () {
-							window.open ('/aboutX.html', '_self');
+							window.open (window.location+'about.html');
 						}
 					},
 
@@ -1265,16 +1265,6 @@
 							PKAudioEditor._deps.Wlc ();
 						}
 					},
-					// {
-					// 	name   : 'About AudioMass',
-					// 	action : function () {
-					// 		window.open ('/about.html');
-					// 	}
-					// },
-
-					// {
-					// 	name:'---'
-					// },
 
 					{
 						name   : 'SourceCode on Github',

@@ -1763,7 +1763,7 @@
 						extra = ',left=' + dat[0] + ',top=' + dat[1];
 					}
 
-					var wnd = window.open ('/' + url + '.html', title, "directories=no,titlebar=no,toolbar=no,"+
+					var wnd = window.open (window.location+ url + '.html', title, "directories=no,titlebar=no,toolbar=no,"+
 							"location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=600,height=188" + extra);
 
 					if (!wnd) {
@@ -1849,7 +1849,7 @@
 						setEvents ( curr_win, url );
 					}
 				};
-				iframe.src = '/' + url + '.html?iframe=1';
+				iframe.src = window.location+ url + '.html?iframe=1';
 			}
 			// ---
 
